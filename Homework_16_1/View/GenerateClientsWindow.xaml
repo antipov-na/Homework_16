@@ -1,0 +1,81 @@
+﻿<Window
+    x:Class="Homework_16_1.GenerateClientsWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Homework_16_1"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="GenerateClientsWindow"
+    SizeToContent="WidthAndHeight"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="2.5" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="2.5" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="MinWidth" Value="60" />
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="MinWidth" Value="75" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="2.5" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock
+            Grid.Column="0"
+            Width="150"
+            Text="Кол-во индивидуальных клиентов:"
+            TextAlignment="Center"
+            TextWrapping="Wrap" />
+        <TextBlock
+            Grid.Column="1"
+            Width="150"
+            Text="Кол-во юридических клиентов:"
+            TextAlignment="Center"
+            TextWrapping="Wrap" />
+
+        <TextBox
+            Grid.Row="1"
+            Grid.Column="0"
+            Text="{Binding IndividualAmount}" />
+        <TextBox
+            Grid.Row="1"
+            Grid.Column="1"
+            Text="{Binding LegalAmount}" />
+
+        <Button
+            Grid.Row="2"
+            Grid.Column="0"
+            HorizontalAlignment="Right"
+            Command="{Binding GenerateCommand}"
+            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+            Content="Окей" />
+        <Button
+            Grid.Row="2"
+            Grid.Column="1"
+            HorizontalAlignment="Left"
+            Command="{Binding CancelCommand}"
+            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+            Content="Отмена" />
+    </Grid>
+</Window>

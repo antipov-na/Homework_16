@@ -1,0 +1,183 @@
+﻿<Window
+    x:Class="Homework_16_1.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Homework_16_1"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Height="400"
+    MinHeight="250"
+    d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel}"
+    SizeToContent="Width"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+        <Style TargetType="TabItem">
+            <Setter Property="Width" Value="85" />
+        </Style>
+        <Style TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal" />
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TabControl Grid.Row="0" SelectedIndex="{Binding SelectedTab}">
+            <TabItem Header="Индив. лица">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <ListView
+                        x:Name="individualClientList"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        ItemsSource="{Binding Path=IndividualClients.Clients, Mode=OneWay}"
+                        SelectedItem="{Binding SelectedClient}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="Id" />
+                                <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Имя" />
+                                <GridViewColumn DisplayMemberBinding="{Binding Surname}" Header="Фамилия" />
+                                <GridViewColumn DisplayMemberBinding="{Binding BirthDate, StringFormat=dd.MM.yyyy}" Header="Дата рож." />
+
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <ListView
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        ItemsSource="{Binding ElementName=individualClientList, Path=SelectedItem.Deposits}"
+                        SelectedItem="{Binding SelectedDeposit}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="Id" />
+                                <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Название" />
+                                <GridViewColumn DisplayMemberBinding="{Binding DepositDate, StringFormat=dd.MM.yyyy}" Header="Дата депозита" />
+                                <GridViewColumn DisplayMemberBinding="{Binding NextPaymentDate, StringFormat=dd.MM.yyyy}" Header="Дата след. выплаты" />
+                                <GridViewColumn DisplayMemberBinding="{Binding FullPaymentDate, StringFormat=dd.MM.yyyy}" Header="Дата полной выплаты" />
+                                <GridViewColumn DisplayMemberBinding="{Binding Ballance}" Header="Балланс" />
+                                <GridViewColumn DisplayMemberBinding="{Binding Interest}" Header="%" />
+                                <GridViewColumn DisplayMemberBinding="{Binding IsCapitalized}" Header="Капит." />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <StackPanel
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        HorizontalAlignment="Center">
+                        <Button Content="&lt;&lt;" />
+                        <Button Content="&gt;&gt;" />
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        HorizontalAlignment="Center">
+                        <Button Content="&lt;&lt;" />
+                        <Button Content="&gt;&gt;" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Юр. лица">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <ListView
+                        x:Name="legalClientList"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        ItemsSource="{Binding LegalClients.Clients, Mode=OneWay}"
+                        SelectedItem="{Binding SelectedClient}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="Id" />
+                                <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Название" />
+                                <GridViewColumn DisplayMemberBinding="{Binding Address}" Header="Адрес" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <ListView
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        ItemsSource="{Binding ElementName=legalClientList, Path=SelectedItem.Deposits}"
+                        SelectedItem="{Binding SelectedDeposit}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="Id" />
+                                <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Название" />
+                                <GridViewColumn DisplayMemberBinding="{Binding DepositDate, StringFormat=dd.MM.yyyy}" Header="Дата депозита" />
+                                <GridViewColumn DisplayMemberBinding="{Binding NextPaymentDate, StringFormat=dd.MM.yyyy}" Header="Дата след. выплаты" />
+                                <GridViewColumn DisplayMemberBinding="{Binding FullPaymentDate, StringFormat=dd.MM.yyyy}" Header="Дата полной выплаты" />
+                                <GridViewColumn DisplayMemberBinding="{Binding Ballance}" Header="Балланс" />
+                                <GridViewColumn DisplayMemberBinding="{Binding Interest}" Header="%" />
+                                <GridViewColumn DisplayMemberBinding="{Binding IsCapitalized}" Header="Капит." />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <StackPanel
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        HorizontalAlignment="Center">
+                        <Button Content="&lt;&lt;" />
+                        <Button Content="&gt;&gt;" />
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        HorizontalAlignment="Center">
+                        <Button Content="&lt;&lt;" />
+                        <Button Content="&gt;&gt;" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <Menu Grid.Row="1" IsMainMenu="True">
+            <MenuItem Header="Добавить">
+                <MenuItem Command="{Binding AddClientCommand}" Header="Клиента" />
+                <MenuItem Command="{Binding AddDepositCommand}" Header="Депозит" />
+                <MenuItem Command="{Binding AddClientsAutomaticlyCommand}" Header="Автоматически" />
+            </MenuItem>
+
+            <MenuItem Header="Удалить">
+                <MenuItem
+                    Command="{Binding DeleteClientCommand}"
+                    CommandParameter="{Binding SelectedClient}"
+                    Header="Клиента" />
+                <MenuItem Command="{Binding DeleteDepositCommand}" Header="Депозит" />
+            </MenuItem>
+
+            <MenuItem Header="Изменить" />
+            <MenuItem Header="История" />
+            <MenuItem Header="Перевести" />
+            <DatePicker BorderThickness="0" />
+        </Menu>
+    </Grid>
+</Window>
