@@ -60,6 +60,7 @@
     <Compile Include="IDialog.cs" />
     <Compile Include="IDialogService.cs" />
     <Compile Include="ViewModel\AddClientViewModel.cs" />
+    <Compile Include="ViewModel\AddLegalClientViewModel.cs" />
     <Compile Include="View\AddClientWindow.xaml.cs">
       <DependentUpon>AddClientWindow.xaml</DependentUpon>
     </Compile>

@@ -1,20 +1,15 @@
 ﻿using MyLibrary;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Homework_16_1
 {
-    public class AddClientViewModel
+    class AddClientViewModel :ICloseRequest
     {
         private IndividualClient individualClient;
-        private LegalClient legalClient;
 
         private RelayCommand addIndividualClient;
-        private RelayCommand addLegalClient;
+
         private RelayCommand exitCommand;
 
         public IndividualClient IndividualClient
@@ -34,23 +29,6 @@ namespace Homework_16_1
             {
                 individualClient = value;
 
-            }
-        }
-
-        public LegalClient LegalClient
-        {
-            get
-            {
-                return legalClient ??
-                  (this.legalClient = new LegalClient()
-                  {
-                      Name = "",
-                      Address = ""
-                  });
-            }
-            set
-            {
-                legalClient = value;
             }
         }
 
@@ -89,33 +67,6 @@ namespace Homework_16_1
             }
         }
 
-        public RelayCommand AddLegalClient
-        {
-            get
-            {
-                return this.addLegalClient ??
-                    (this.addLegalClient = new RelayCommand(obj =>
-                    {
-                        try
-                        {
-                            if (this.legalClient.Name == "" ||
-                                this.legalClient.Address == "")
-                            {
-                                throw new FormatException();
-                            }
-                        }
-                        catch (FormatException)
-                        {
-                            MessageBox.Show("Имя или адрес введены неверно!");
-                            return;
-                        }
-
-                        MainWindowViewModel.Bank.AddClient(this.legalClient);
-                        (obj as Window).Close();
-                    }));
-            }
-        }
-
         public RelayCommand ExitCommand
         {
             get
@@ -126,5 +77,7 @@ namespace Homework_16_1
                     }));
             }
         }
+
+        public event EventHandler<CloseRequestArgs> CloseRequest;
     }
 }
