@@ -18,12 +18,11 @@ namespace Homework_16_1
     /// <summary>
     /// Логика взаимодействия для AddDepositWindow.xaml
     /// </summary>
-    public partial class AddDepositWindow : Window
+    public partial class AddDepositWindow : Window, IDialog
     {
-        public AddDepositWindow(Client client, List<DepositParametr> depositParametrs)
+        public AddDepositWindow()
         {
             InitializeComponent();
-            DataContext = new AddDepositViewModel(client, depositParametrs);
         }
     }
 }

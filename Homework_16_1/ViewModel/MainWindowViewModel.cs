@@ -122,13 +122,13 @@ namespace Homework_16_1
                   {
                       if (this.selectedTab == 0)
                       {
-                          AddClientWindow w = new AddClientWindow();
-                          w.Show();
+                          AddClientViewModel vm = new AddClientViewModel();
+                          bool? dialogResult = dialogService.Show(vm);
                       }
                       else
                       {
-                          AddLegalClientWindow w = new AddLegalClientWindow();
-                          w.Show();
+                          AddLegalClientViewModel vm = new AddLegalClientViewModel();
+                          bool? dialogResult = dialogService.Show(vm);
                       }
                   }));
             }
@@ -195,8 +195,8 @@ namespace Homework_16_1
                           param = Bank.DepositParametrs.LegalParametrs;
                       }
 
-                      AddDepositWindow w = new AddDepositWindow(this.selectedClient, param);
-                      w.Show();
+                      AddDepositViewModel vm = new AddDepositViewModel(this.selectedClient, param);
+                      dialogService.Show(vm);
                   }));
             }
 
@@ -209,7 +209,8 @@ namespace Homework_16_1
                 return this.addClientsAutomaticlyCommand ??
                     (this.addClientsAutomaticlyCommand = new RelayCommand(obj =>
                     {
-                        
+                        GenerateClientsViewModel vm = new GenerateClientsViewModel();
+                        dialogService.Show(vm);
                     }));
             }
         }

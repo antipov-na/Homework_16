@@ -17,6 +17,12 @@ namespace Homework_16_1
         {
             IDialogService dialogService = new DialogService(MainWindow);
             MainWindowViewModel mainWindowViewModel = new MainWindowViewModel(dialogService);
+
+            dialogService.Register<AddClientViewModel, AddClientWindow>();
+            dialogService.Register<AddLegalClientViewModel, AddLegalClientWindow>();
+            dialogService.Register<AddDepositViewModel, AddDepositWindow>();
+            dialogService.Register<GenerateClientsViewModel, GenerateClientsWindow>();
+
             MainWindow window = new MainWindow();
             window.DataContext = mainWindowViewModel;
             window.ShowDialog();

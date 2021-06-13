@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace Homework_16_1
 {
-    public class AddDepositViewModel : INotifyPropertyChanged
+    class AddDepositViewModel : INotifyPropertyChanged, ICloseRequest
     {
         private Client client;
         private List<DepositParametr> depositParametrs;
@@ -109,6 +109,7 @@ namespace Homework_16_1
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+        public event EventHandler<CloseRequestArgs> CloseRequest;
 
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
