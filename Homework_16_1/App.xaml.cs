@@ -13,5 +13,13 @@ namespace Homework_16_1
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            IDialogService dialogService = new DialogService(MainWindow);
+            MainWindowViewModel mainWindowViewModel = new MainWindowViewModel(dialogService);
+            MainWindow window = new MainWindow();
+            window.DataContext = mainWindowViewModel;
+            window.ShowDialog();
+        }
     }
 }

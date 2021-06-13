@@ -24,8 +24,14 @@ namespace Homework_16_1
         private FasterObservableCollection<IndividualClient> individualClients;
         private FasterObservableCollection<LegalClient> legalClients;
 
+        private IDialogService dialogService;
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(IDialogService dialogService) : this()
+        {
+            this.dialogService = dialogService;
+
+        }
+        private MainWindowViewModel()
         {
             Bank = new Bank();
             this.individualClients = Bank.IndividualClients;
@@ -200,11 +206,10 @@ namespace Homework_16_1
         {
             get
             {
-                return this.addClientsAutomaticlyCommand ?? 
+                return this.addClientsAutomaticlyCommand ??
                     (this.addClientsAutomaticlyCommand = new RelayCommand(obj =>
                     {
-                        GenerateClientsWindow w = new GenerateClientsWindow();
-                        w.Show();
+                        
                     }));
             }
         }

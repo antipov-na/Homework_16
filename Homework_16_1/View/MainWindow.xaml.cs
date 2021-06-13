@@ -22,13 +22,9 @@ namespace Homework_16_1
     /// </summary>
     public partial class MainWindow : Window
     {
-        public DialogService dialogService;
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel();
-            dialogService = new DialogService(this);
-            dialogService.Register<GenerateClientsViewModel, GenerateClientsWindow>();
         }
     }
 }
